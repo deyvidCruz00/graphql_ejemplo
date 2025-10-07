@@ -116,3 +116,35 @@ Respuesta esperada:
 }
 ```
 
+**4. Crear nuvo producto**
+
+Consulta:
+```graphql
+mutation {
+  crearProducto(nombre: "Teclado RGB", precio: 320000, stock: 15) {
+    producto {
+      id
+      nombre
+      precio
+      stock
+    }
+  }
+}
+```
+
+Respuesta esperada:
+```json
+{
+  "data": {
+    "crearProducto": {
+      "producto": {
+        "id": 5,
+        "nombre": "Teclado RGB",
+        "precio": 320000.0,
+        "stock": 15
+      }
+    }
+  }
+}
+```
+
