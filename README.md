@@ -35,3 +35,84 @@ python app.py
 
 ### 5 Probar en el navegador
 http://127.0.0.1:5000/graphql
+
+### 6 Ejemplos
+
+🔹 **1. Obtener todos los productos**
+
+Consulta:
+```graphql
+{
+  productos {
+    id
+    nombre
+    precio
+  }
+}
+```
+
+Respuesta esperada:
+```json
+{
+  "data": {
+    "productos": [
+      { "id": 1, "nombre": "Teclado mecánico", "precio": 250000.0 },
+      { "id": 2, "nombre": "Mouse inalámbrico", "precio": 80000.0 },
+      { "id": 3, "nombre": "Monitor 24 pulgadas", "precio": 700000.0 },
+      { "id": 4, "nombre": "Audífonos gamer", "precio": 180000.0 }
+    ]
+  }
+}
+```
+
+**2. Obtener un producto por ID**
+
+Consulta:
+```graphql
+{
+  producto(id: 2) {
+    id
+    nombre
+    precio
+  }
+}
+```
+
+Respuesta esperada:
+```json
+{
+  "data": {
+    "producto": {
+      "id": 2,
+      "nombre": "Mouse inalámbrico",
+      "precio": 80000.0
+    }
+  }
+}
+```
+
+**3. Consultar solo ciertos campos**
+
+Consulta:
+```graphql
+{
+  productos {
+    nombre
+  }
+}
+```
+
+Respuesta esperada:
+```json
+{
+  "data": {
+    "productos": [
+      { "nombre": "Teclado mecánico" },
+      { "nombre": "Mouse inalámbrico" },
+      { "nombre": "Monitor 24 pulgadas" },
+      { "nombre": "Audífonos gamer" }
+    ]
+  }
+}
+```
+
