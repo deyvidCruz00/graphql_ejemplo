@@ -9,7 +9,7 @@ Permite consultar todos los productos y buscar uno por su ID.
 
 ---
 
-## 🧱 Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - **Python 3.10+**
 - **Flask 2.3.2**
