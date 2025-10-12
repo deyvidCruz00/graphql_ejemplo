@@ -2,7 +2,6 @@ from flask import Flask
 from flask_graphql import GraphQLView
 import graphene
 
-# ==== Datos quemados ====
 productos = [
     {"id": 1, "nombre": "Laptop", "precio": 3500.0, "stock": 10},
     {"id": 2, "nombre": "Mouse", "precio": 80.5, "stock": 50},
@@ -10,7 +9,6 @@ productos = [
 ]
 
 
-# ==== Definición del tipo Producto ====
 class Producto(graphene.ObjectType):
     id = graphene.Int()
     nombre = graphene.String()
@@ -18,12 +16,10 @@ class Producto(graphene.ObjectType):
     stock = graphene.Int()
 
 
-# ==== Definición de las consultas ====
 class Query(graphene.ObjectType):
-    # Obtener todos los productos
+
     productos = graphene.List(Producto)
 
-    # Obtener un producto por ID
     producto = graphene.Field(Producto, id=graphene.Int(required=True))
 
     def resolve_productos(self, info):
@@ -34,9 +30,9 @@ class Query(graphene.ObjectType):
             if p["id"] == id:
                 return p
         return None
+    
 
 
-# ==== Definición de las mutaciones ====
 class CrearProducto(graphene.Mutation):
     class Arguments:
         nombre = graphene.String(required=True)
@@ -60,11 +56,8 @@ class Mutation(graphene.ObjectType):
     crear_producto = CrearProducto.Field()
 
 
-# ==== Crear el esquema ====
 schema = graphene.Schema(query=Query, mutation=Mutation)
 
-
-# ==== Servidor Flask con GraphQL ====
 app = Flask(__name__)
 
 app.add_url_rule(
